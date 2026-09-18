@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 public class LoginTest {
 
     // Valid test data from the POE
-    private final String validUsername = "Sly_1";
-    private final String validPassword = "Ch&sec@ke99!";
+    private final String validUsername = "Syv_8";
+    private final String validPassword = "Ch&seck9";
     private final String validCellPhone = "+27838968976";
 
     // ========== registerUser() Tests (assertEquals) ==========
@@ -62,7 +62,7 @@ public class LoginTest {
     @Test
     public void testCheckUserNameCorrectlyFormatted() {
         Login login = new Login();
-        assertTrue(login.checkUserName("Slyvl_1"));
+        assertTrue(login.checkUserName("Syv_8"));
     }
 
     @Test
@@ -74,7 +74,7 @@ public class LoginTest {
     @Test
     public void testCheckPasswordComplexityMeetsRequirements() {
         Login login = new Login();
-        assertTrue(login.checkPasswordComplexity("Ch&sec@ke99!"));
+        assertTrue(login.checkPasswordComplexity("Ch&seck9"));
     }
 
     @Test
@@ -123,12 +123,12 @@ public class LoginTest {
         login.registerUser(validUsername, validPassword, validCellPhone);
 
         String status = login.returnLoginStatus(true);
-        assertEquals("Welcome Slyvester,Sibonakaliso it is great to see you again.", status);
+        assertEquals("Welcome Slyvester Sibonakaliso it is great to see you again.", status);
     }
 
     @Test
     public void testReturnLoginStatusFailed() {
-        Login login = new Login("Slyvester", "Siboanakaliso");
+        Login login = new Login("Slyvester", "Sibonakaliso");
         String status = login.returnLoginStatus(false);
         assertEquals("Username or password incorrect, please try again.", status);
     }
