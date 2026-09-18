@@ -1,8 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package za.ac.iie.prog5121.icetask3.chartapppart_1;
+package za.ac.iie.prog5121.icetask3.chatapppart_1;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -56,23 +52,19 @@ public class Login {
     }
 
     /**
-     * South African number: +27 followed by up to ten digits.
-     * The task's supplied valid test data uses exactly ten digits after +27.
-     * @param cellPhoneNumber
-     * @return
-     *Regex syntax researched from Oracle Java Tutorials
-     *https://docs.oracle.com/javase/tutorial/essential/regex/
+     * South African number: +27 followed by exactly 9 digits.
+     * Regex researched from Oracle Java Tutorials
+     * https://docs.oracle.com/javase/tutorial/essential/regex/
      */
     public boolean checkCellPhoneNumber(String cellPhoneNumber) {
         Pattern pattern = Pattern.compile("^\\+27\\d{9}$");
-        Matcher matcher;
-        matcher = pattern.matcher(cellPhoneNumber);
+        Matcher matcher = pattern.matcher(cellPhoneNumber);
         return matcher.matches();
     }
 
     public String registerUser(String username, String password, String cellPhoneNumber) {
         if (!checkUserName(username)) {
-            return username != null && username.contains("_")&&username.length() <=5;
+            return "Username is not correctly formatted; please ensure that your username contains an underscore and is no more than five characters in length.";
         }
 
         if (!checkPasswordComplexity(password)) {
@@ -98,7 +90,7 @@ public class Login {
 
     public String returnLoginStatus(boolean loginSuccessful) {
         if (loginSuccessful) {
-            return "Welcome " + firstName + " " + lastName +"," + " it is great to see you again.";
+            return "Welcome " + firstName + ", " + lastName + " it is great to see you again.";
         }
         return "Username or password incorrect, please try again.";
     }
