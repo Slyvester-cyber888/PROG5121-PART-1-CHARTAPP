@@ -1,4 +1,5 @@
-import za.ac.iie.prog5121.icetask3.chatapppart_1;
+package za.ac.iie.prog5121.icetask3.chatapppart_1;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -8,7 +9,7 @@ import org.junit.jupiter.api.Test;
 public class LoginTest {
 
     // Valid test data from the POE
-    private final String validUsername = "Slyvl_1";
+    private final String validUsername = "Sly_1";
     private final String validPassword = "Ch&sec@ke99!";
     private final String validCellPhone = "+27838968976";
 
@@ -39,7 +40,7 @@ public class LoginTest {
     public void testRegisterUserUsernameIncorrectlyFormatted() {
         Login login = new Login("Slyvester", "Sibonakaliso");
         String result = login.registerUser("Slyvester!!!!!!", validPassword, validCellPhone);
-        assertEquals("Username is not correctly formatted; please ensure that your username contains an underscore and is no more than five characters in length.", result);
+        assertEquals("Username is not correctly formatted; please ensure that your username contains an underscore and is no more than 5 characters in length.", result);
     }
 
     @Test
