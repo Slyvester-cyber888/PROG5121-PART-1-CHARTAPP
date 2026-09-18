@@ -20,7 +20,7 @@ public class Main {
             System.out.print("Enter your last name: ");
             String lastName = scanner.nextLine();
 
-            Login userLogin = new Login(firstName, lastName);
+            //Login userLogin = new Login(firstName, lastName);
 
             System.out.print("Enter username: ");
             String username = scanner.nextLine();
