@@ -126,6 +126,26 @@ To run the tests:
 - Git & GitHub
 
 ---
+REGEX REFERENCING:
+- 
+The regular expression used to validate the South African cell phone number was researched from the official Oracle Java Tutorials:
+
+Oracle. (n.d.). *Lesson: Regular Expressions*.  
+https://docs.oracle.com/javase/tutorial/essential/regex/
+
+"/**
+     * South African number: +27 followed by up to ten digits.
+     * The task's supplied valid test data uses exactly ten digits after +27.
+     * @param cellPhoneNumber
+     * @return 
+     */
+    public boolean checkCellPhoneNumber(String cellPhoneNumber) {
+        return cellPhoneNumber != null
+                && cellPhoneNumber.matches("^\\+27[0-9]{1,10}$");
+    } "
+
+
+
 VIDEO:
 - https://youtu.be/3sXVltLQg6A?si=7JL5tR34OddC4D78
 ## Author
