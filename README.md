@@ -153,3 +153,36 @@ VIDEO:
 Student Name: [Slyvester Sibonakaliso]  
 Student Number: [ST10522997]  
 Module: PROG5121 – Programming 1A
+
+---
+
+# Part 2: QuickChat (Sending Messages)
+
+Part 2 extends the Part 1 registration and login app. Only a user who logs in successfully can use QuickChat.
+
+## How it works
+- After login: `Welcome to QuickChat.` and the user enters how many messages they want to send.
+- A **while loop** keeps the menu running until option 3:
+  1) Send Messages, 2) Show recently sent messages ("Coming Soon."), 3) Quit
+- A **for loop** allows only the number of messages the user chose. The loop counter is the message number.
+- Each message gets a random **10-digit Message ID** (stored as a String to keep leading zeroes).
+- The recipient must start with **+27** followed by 9 digits (e.g. +27718693002).
+- Messages may be at most **250 characters**.
+- The **message hash** = first 2 digits of the ID : message number : first + last word, in capitals (e.g. `00:0:HITONIGHT`).
+- The user can **Send**, **Disregard** (press 0 to delete) or **Store** the message. Stored messages are saved to `stored_messages.json` using Gson.
+- Sent messages show Message ID, Message Hash, Recipient and Message, then the total number sent.
+
+## Classes
+| Class | Purpose |
+|---|---|
+| `Main` | Console prompts, login flow, QuickChat menu and loops |
+| `Login` | Part 1 registration and login validation |
+| `Message` | Part 2 message ID, validation, hash, send/disregard/store, JSON storage |
+| `LoginTest`, `MessageTest` | JUnit 5 unit tests |
+
+## Tests
+Run `mvn test` locally. GitHub Actions runs the same tests on every push (`.github/workflows/TestJava.yml`).
+
+## References
+- Google Gson: https://github.com/google/gson
+- Gson User Guide: https://github.com/google/gson/blob/main/UserGuide.md
