@@ -6,6 +6,16 @@
 
 ---
 
+## Part 2 Test Run Video
+
+[![QuickChat PROG5121 Part 2 – Test Run](https://img.youtube.com/vi/va0b0KUe2PE/0.jpg)](https://youtu.be/va0b0KUe2PE)
+
+Watch on YouTube: https://youtu.be/va0b0KUe2PE
+
+Shows the JUnit tests (29 passing), login, the QuickChat menu, message validation, Send/Disregard/Store and JSON storage.
+
+---
+
 ## Project Overview
 
 This is **Part 1** of a console-based Chat Application.  
