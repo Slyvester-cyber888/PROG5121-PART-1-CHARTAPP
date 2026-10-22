@@ -159,4 +159,11 @@ public class MessageTest {
             assertEquals(expected[i], message.createMessageHash());
         }
     }
+
+    @Test
+    public void testHashIgnoresPunctuationOnItsOwn() {
+        // Official Part 3 message 4 is printed with a space before "!".
+        Message message = new Message("0838884567", 3, validRecipient, "It is dinner time !");
+        assertEquals("08:3:ITTIME", message.getMessageHash());
+    }
 }
