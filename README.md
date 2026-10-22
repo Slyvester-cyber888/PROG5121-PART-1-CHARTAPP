@@ -1,4 +1,4 @@
-# ChatApp - Part 1: Registration and Login Feature
+# ChatApp (QuickChat) - PROG5121 PoE Parts 1, 2 and 3
 
 **Module:** Programming 1A (PROG5121)  
 **Assessment:** Portfolio of Evidence (PoE) – Part 1  
@@ -196,3 +196,54 @@ Run `mvn test` locally. GitHub Actions runs the same tests on every push (`.gith
 ## References
 - Google Gson: https://github.com/google/gson
 - Gson User Guide: https://github.com/google/gson/blob/main/UserGuide.md
+
+---
+
+# Part 3: Store Data and Display Task Report
+
+Part 3 adds to the same app (Parts 1 and 2 still work). Message data is kept in **arrays**, stored messages are **reloaded from JSON** when QuickChat starts, and a new main-menu option manages them.
+
+## Main menu
+1) Send Messages, 2) Show recently sent messages ("Coming Soon."), 3) Quit, **4) Stored Messages**
+
+## Stored Messages submenu (option 4)
+| Option | What it does |
+|---|---|
+| 1 | Display the sender and recipient of every stored message |
+| 2 | Display the longest stored message (compares message length) |
+| 3 | Search using a Message ID (shows recipient and message) |
+| 4 | Search all sent and stored messages for a recipient (shows every match) |
+| 5 | Delete a stored message using its Message Hash (updates the arrays and the JSON file) |
+| 6 | Display the message report (status, ID, hash, sender, recipient, message, totals) |
+| 7 | Return to the main menu |
+
+## Arrays (`MessageManager`)
+- The five PoE arrays: **Sent Messages**, **Disregarded Messages**, **Stored Messages**, **Message Hash**, **Message ID**.
+- Supporting parallel arrays: senders, recipients, message texts and statuses. The same index in every parallel array is the same message, and they are shifted together when a message is deleted.
+- Arrays start at the user's message limit and grow (copy into a bigger array) when stored messages loaded from JSON need more room.
+- The sender is the logged-in username.
+
+## JSON
+- `stored_messages.json` holds stored messages only (messageId, messageNumber, messageHash, sender, recipient, message, status).
+- On start-up the file is read with Gson `fromJson` into an array of records and copied into the arrays. A missing or empty file is handled.
+- Deleting by hash rewrites the file, so a deleted message stays deleted after a restart.
+- Sent and disregarded messages are kept in the arrays for the current run.
+
+## Tests
+`MessageManagerTest` (25 tests) uses the five official Part 3 messages: the sent array (1 and 4), stored messages reloaded from JSON (2 and 5), disregarded (3), the longest message, ID search (found and not found), recipient search (multiple and no matches), delete by hash (it stays deleted after a reload; first, middle and last; an unknown or sent hash), the report, and earlier features. In total 55 tests (LoginTest 16, MessageTest 14, MessageManagerTest 25) run locally and in GitHub Actions.
+
+**Test data notes:** message 4 is printed as "Developer 0838884567". The tests use 0838884567 as message 4's controlled Message ID and as its recipient, exactly as printed. Message 4's text is printed as "It is dinner time !" while the expected result is "It is dinner time!", so the test fixture uses "It is dinner time!". The app itself keeps whatever the user types, and the hash ignores a lone "!" (`It is dinner time !` gives `..:3:ITTIME`).
+
+## Classes
+| Class | Purpose |
+|---|---|
+| `Main` | Console menus and input (Parts 1 to 3) |
+| `Login` | Part 1 registration and login |
+| `Message` | Part 2 message ID, validation, hash, send/disregard/store, JSON writing |
+| `MessageManager` | Part 3 arrays, JSON reading, search, delete, longest message and report |
+| `LoginTest`, `MessageTest`, `MessageManagerTest` | JUnit 5 tests |
+
+## References
+- Google Gson: https://github.com/google/gson
+- Gson User Guide (Array and Object examples, `fromJson` and `toJson`): https://github.com/google/gson/blob/main/UserGuide.md
+- IIE (2026) Programming 1A Module Outline, Learning Unit 6: Introduction to Arrays.
