@@ -51,12 +51,21 @@ public class Message {
     private final String recipient;
     private final String messageText;
     private final String messageHash;
+    private String sender = "Unknown"; // Part 3: the logged-in user who created the message
 
     /**
      * Creates a message with a randomly generated ten-digit ID.
      */
     public Message(int messageNumber, String recipient, String messageText) {
         this(generateMessageId(), messageNumber, recipient, messageText);
+    }
+
+    /**
+     * Part 3: creates a message with a random ID and records who sent it.
+     */
+    public Message(int messageNumber, String sender, String recipient, String messageText) {
+        this(generateMessageId(), messageNumber, recipient, messageText);
+        setSender(sender);
     }
 
     /**
@@ -147,19 +156,22 @@ public class Message {
     public final String createMessageHash() {
         String idPart = messageId.substring(0, 2);
 
-        String[] words = messageText.trim().split("\\s+");
-        String firstWord = removePunctuation(words[0]);
-        String lastWord = removePunctuation(words[words.length - 1]);
+        // Remove punctuation first so a lone "!" or "?" at the end
+        // (e.g. "It is dinner time !") is not treated as the last word.
+        String[] words = removePunctuationKeepSpaces(messageText).trim().split("\\s+");
+        String firstWord = words[0];
+        String lastWord = words[words.length - 1];
 
         String hash = idPart + ":" + messageNumber + ":" + firstWord + lastWord;
         return hash.toUpperCase();
     }
 
     /**
-     * Removes any characters that are not letters or digits (e.g. "tonight?" -> "tonight").
+     * Removes punctuation but keeps the spaces between words
+     * (e.g. "Hi Mike, can you join us?" -> "Hi Mike can you join us").
      */
-    private static String removePunctuation(String word) {
-        return word.replaceAll("[^A-Za-z0-9]", "");
+    private static String removePunctuationKeepSpaces(String text) {
+        return text.replaceAll("[^A-Za-z0-9\\s]", "");
     }
 
     /**
@@ -244,6 +256,7 @@ public class Message {
             json.addProperty("messageId", messageId);
             json.addProperty("messageNumber", messageNumber);
             json.addProperty("messageHash", messageHash);
+            json.addProperty("sender", sender);
             json.addProperty("recipient", recipient);
             json.addProperty("message", messageText);
             json.addProperty("status", "STORED");
@@ -284,5 +297,16 @@ public class Message {
 
     public String getMessageHash() {
         return messageHash;
+    }
+
+    public String getSender() {
+        return sender;
+    }
+
+    /**
+     * Sets the sender (the logged-in username). Blank values become "Unknown".
+     */
+    public final void setSender(String sender) {
+        this.sender = (sender == null || sender.isBlank()) ? "Unknown" : sender;
     }
 }
