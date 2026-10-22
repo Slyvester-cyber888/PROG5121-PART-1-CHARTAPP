@@ -21,5 +21,5 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Run unit tests (LoginTest and MessageTest)
+      - name: Run unit tests (LoginTest, MessageTest and MessageManagerTest)
         run: mvn -B test
