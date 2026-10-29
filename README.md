@@ -20,9 +20,11 @@ Shows the JUnit tests (29 passing), login, the QuickChat menu, message validatio
 
 ## Part 3 Test Run Video
 
-[![QuickChat PROG5121 Part 3 – NetBeans Test Run](https://img.youtube.com/vi/TncDNMoJf0Q/0.jpg)](https://youtu.be/TncDNMoJf0Q)
+[![QuickChat PROG5121 Part 3 - NetBeans Test Run + GitHub Actions](https://img.youtube.com/vi/cqrY5RIaKrU/0.jpg)](https://youtu.be/cqrY5RIaKrU)
 
-Watch on YouTube: https://youtu.be/TncDNMoJf0Q
+Watch on YouTube: https://youtu.be/cqrY5RIaKrU
+
+The last 30 seconds show the green TestJava GitHub Actions run (Tests run: 55, Failures: 0, BUILD SUCCESS) and the passing badge.
 
 Shows the project running in NetBeans: 55 JUnit tests passing, failed-login protection, the 5 test messages (send, store, disregard), the Stored Messages menu (sender and recipient, longest message, search by Message ID, search by recipient, delete by Message Hash, report) and JSON persistence across restarts.
 
