@@ -1,5 +1,7 @@
 # ChatApp (QuickChat) - PROG5121 PoE Parts 1, 2 and 3
 
+[![TestJava](https://github.com/Slyvester-cyber888/PROG5121-PART-1-CHARTAPP/actions/workflows/TestJava.yml/badge.svg?branch=master)](https://github.com/Slyvester-cyber888/PROG5121-PART-1-CHARTAPP/actions/workflows/TestJava.yml)
+
 **Module:** Programming 1A (PROG5121)  
 **Assessment:** Portfolio of Evidence (PoE) – Part 1  
 **Marks:** 100
@@ -23,6 +25,16 @@ Shows the JUnit tests (29 passing), login, the QuickChat menu, message validatio
 Watch on YouTube: https://youtu.be/TncDNMoJf0Q
 
 Shows the project running in NetBeans: 55 JUnit tests passing, failed-login protection, the 5 test messages (send, store, disregard), the Stored Messages menu (sender and recipient, longest message, search by Message ID, search by recipient, delete by Message Hash, report) and JSON persistence across restarts.
+
+---
+
+## GitHub Actions (Automated Unit Tests)
+
+The `TestJava` workflow (`.github/workflows/TestJava.yml`) runs `mvn test` on JDK 25 on every push to `master`. The badge at the top of this README shows the live result of the latest run.
+
+- All workflow runs: https://github.com/Slyvester-cyber888/PROG5121-PART-1-CHARTAPP/actions/workflows/TestJava.yml
+- Latest successful run: https://github.com/Slyvester-cyber888/PROG5121-PART-1-CHARTAPP/actions/runs/40836628556
+- Result: 55 tests, 0 failures (LoginTest 16, MessageTest 14, MessageManagerTest 25)
 
 ---
 
